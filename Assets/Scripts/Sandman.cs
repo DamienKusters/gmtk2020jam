@@ -11,6 +11,8 @@ public class Sandman : MonoBehaviour
     private GameObject dreamingStem;
     private SpriteRenderer currentDream;
 
+    public Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,31 @@ public class Sandman : MonoBehaviour
     void Update()
     {
         //TODO: Moving animation to correct side
+        if(globals.currentDirection == Direction.UP)
+        {
+            animator.SetBool("IsForward", false);
+            animator.SetBool("IsLeft", false);
+            animator.SetBool("IsRight", false);
+        }
+        else if(globals.currentDirection == Direction.RIGHT || globals.currentDirection == Direction.UP_RIGHT || globals.currentDirection == Direction.DOWN_RIGHT)
+        {
+            animator.SetBool("IsForward", false);
+            animator.SetBool("IsLeft", false);
+            animator.SetBool("IsRight", true);
+        }
+        else if (globals.currentDirection == Direction.LEFT || globals.currentDirection == Direction.UP_LEFT || globals.currentDirection == Direction.DOWN_LEFT)
+        {
+            animator.SetBool("IsForward", false);
+            animator.SetBool("IsLeft", true);
+            animator.SetBool("IsRight", false);
+        }
+        else
+        {
+            animator.SetBool("IsForward", true);
+            animator.SetBool("IsLeft", false);
+            animator.SetBool("IsRight", false);
+        }
+
 
         globals.score.text = globals.currentDirection.ToString();//DEBUG
 
