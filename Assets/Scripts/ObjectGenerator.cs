@@ -21,24 +21,13 @@ public class ObjectGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
 
+        GenerateObject();
     }
 
     void GenerateObject()
     {
 
-        ResetSpawnerPositions();
-    }
 
-    void ResetSpawnerPositions()
-    {
-        float camHeight = camera.orthographicSize;
-        float camWidth = camHeight * camera.aspect;
-
-        generatorNorth.transform.position = new Vector2(0, camHeight + 3);
-        generatorSouth.transform.position = new Vector2(0, 0 - camHeight - 3);
-        generatorEast.transform.position = new Vector2(camWidth + 3, 0);
-        generatorWest.transform.position = new Vector2(0 - camWidth - 3, 0);
     }
 }

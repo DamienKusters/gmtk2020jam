@@ -13,6 +13,8 @@ public class Sandman : MonoBehaviour
 
     public Animator animator;
 
+    public float sandmanSpeed = 1.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,27 +30,44 @@ public class Sandman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //TODO: Moving animation to correct side
-        if(globals.currentDirection == Direction.UP)
+
+
+        if (globals.currentDirection == Direction.UP)
         {
+            //Set new Coordinate and Update
+            transform.position += Vector3.up * sandmanSpeed * Time.deltaTime;
+
+            //Ensure correct animation plays
             animator.SetBool("IsForward", false);
             animator.SetBool("IsLeft", false);
             animator.SetBool("IsRight", false);
         }
         else if(globals.currentDirection == Direction.RIGHT || globals.currentDirection == Direction.UP_RIGHT || globals.currentDirection == Direction.DOWN_RIGHT)
         {
+            //Set new Coordinate and Update
+            transform.position += Vector3.right * sandmanSpeed * Time.deltaTime;
+
+            //Ensure correct animation plays
             animator.SetBool("IsForward", false);
             animator.SetBool("IsLeft", false);
             animator.SetBool("IsRight", true);
         }
         else if (globals.currentDirection == Direction.LEFT || globals.currentDirection == Direction.UP_LEFT || globals.currentDirection == Direction.DOWN_LEFT)
         {
+            //Set new Coordinate and Update
+            transform.position += Vector3.left * sandmanSpeed * Time.deltaTime;
+
+            //Ensure correct animation plays
             animator.SetBool("IsForward", false);
             animator.SetBool("IsLeft", true);
             animator.SetBool("IsRight", false);
         }
         else
         {
+            //Set new Coordinate and Update
+            transform.position += Vector3.down * sandmanSpeed * Time.deltaTime;
+
+            //Ensure correct animation plays
             animator.SetBool("IsForward", true);
             animator.SetBool("IsLeft", false);
             animator.SetBool("IsRight", false);
