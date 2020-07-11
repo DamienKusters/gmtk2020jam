@@ -6,6 +6,7 @@ public class Sandman : MonoBehaviour
 {
     private Globals globals;
     private bool isDreamingOfDirection = false;
+    private Direction dreamingDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -20,42 +21,49 @@ public class Sandman : MonoBehaviour
     {
         //Moving animation to correct side
 
-        globals.score.text = globals.currentDirection.ToString();
+        globals.score.text = globals.currentDirection.ToString();//DEBUG
 
-        //Change dreaming texture if user clicks on button
+        //TODO: Change texture if user changes it
+
+        if (globals.directionChanged)//If player has manipulated his dream
+        {
+            if (!isDreamingOfDirection)
+                DetermineNextLocation();
+            isDreamingOfDirection = true;
+
+            if (globals.newDirection == Direction.RANDOM)
+                dreamingDirection = (Direction)Random.Range(0, 8);
+            else
+                dreamingDirection = globals.newDirection;
+
+            Debug.Log("......Sandman's dream is changed: " + dreamingDirection);
+
+            globals.directionChanged = false;//Reset the flag
+        }
     }
 
     void DetermineNextLocation()
     {
-        //Cancel if sandman is already thinking about 
+        //Cancel if sandman is already thinking about a dream
         if (isDreamingOfDirection)
             return;
 
         isDreamingOfDirection = true;
 
-        Debug.Log("......Sandman is dreaming of something");
+        dreamingDirection = (Direction)Random.Range(0, 8);
+
+        //TODO: SET TEXTURE OF DREAMING DIRECTION
+
+        Debug.Log("......Sandman is dreaming of: " + dreamingDirection);
 
         StartCoroutine(WaitForARandomAmountOfTime());//Waits a random amount of time before Sandman will change direction
-
-        //TODO: SET TEXTURE OF WHAT HE IS THINKING ABOUT
     }
 
     IEnumerator WaitForARandomAmountOfTime()
     {
         yield return new WaitForSeconds(Random.Range(4, 8));//TODO: Edit randoms
 
-        if (globals.directionChanged)//Use that direction
-        {
-            //TODO: If RANDOM, do RANDOM instead.
-
-            globals.currentDirection = globals.newDirection;
-
-            globals.directionChanged = false;//Reset the flag
-        }
-        else//RNG direction
-        {
-            globals.currentDirection = (Direction)Random.Range(0, 8);
-        }
+        globals.currentDirection = dreamingDirection;//Change direction
 
         isDreamingOfDirection = false;
     }
