@@ -15,7 +15,9 @@ public class Globals : MonoBehaviour
     public Text score;
 
 
-    public List<GameObject> gameTiles = new List<GameObject>();
+    public Grid gameGrid;
+
+    
 
     public Sprite GetSpriteBasedOnDirection(Direction direction)
     {
