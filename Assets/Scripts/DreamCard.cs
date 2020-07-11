@@ -26,6 +26,8 @@ public class DreamCard : MonoBehaviour
     {
         int rand = Random.Range(0, 9);
 
+        direction = (Direction)rand;
+
         switch (rand)
         {
             case 0:
@@ -56,16 +58,12 @@ public class DreamCard : MonoBehaviour
                 image.sprite = random;
                 break;
         }
-
-        direction = (Direction)rand;
     }
 
     public void onClick()
     {
         globals.direction = direction;
         globals.directionChanged = true;
-
-        Debug.Log(direction.ToString());
     }
 
     

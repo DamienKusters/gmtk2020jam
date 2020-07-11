@@ -874,7 +874,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72b06588c87d6e419f0de8c60cfefed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: up
+  directionChanged: 0
+  direction: 2
+  time: {fileID: 701517274}
+  score: {fileID: 741284256}
 --- !u!1 &1022884839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,16 +1086,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ad4b5d217e6fb4a84330461d108f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DreamCardSprites:
-  - {fileID: 21300000, guid: 3d0a66ce2dc76b94392a3ab381374ced, type: 3}
-  - {fileID: 21300000, guid: 224924fc113857b4996d9acdbffdb500, type: 3}
-  - {fileID: 21300000, guid: 50b53c82e9b9949459d3a6590d363c0e, type: 3}
-  - {fileID: 21300000, guid: bebde52f80dae034ab46710a616b6070, type: 3}
-  - {fileID: 21300000, guid: 0fb45161cbedbf6418e64a118338d907, type: 3}
-  - {fileID: 21300000, guid: e35e9672e057c9b46b5ed91daa133e3f, type: 3}
-  - {fileID: 21300000, guid: 72c18a61df67dd642b17853c638f4acc, type: 3}
-  - {fileID: 21300000, guid: 5ddc45ca5abbdc744979b985d0fd4eea, type: 3}
-  - {fileID: 21300000, guid: 8bb44995259e30747892393b88185646, type: 3}
+  up: {fileID: 21300000, guid: 72c18a61df67dd642b17853c638f4acc, type: 3}
+  up_right: {fileID: 21300000, guid: 8bb44995259e30747892393b88185646, type: 3}
+  right: {fileID: 21300000, guid: e35e9672e057c9b46b5ed91daa133e3f, type: 3}
+  down_right: {fileID: 21300000, guid: 224924fc113857b4996d9acdbffdb500, type: 3}
+  down: {fileID: 21300000, guid: 50b53c82e9b9949459d3a6590d363c0e, type: 3}
+  down_left: {fileID: 21300000, guid: 3d0a66ce2dc76b94392a3ab381374ced, type: 3}
+  left: {fileID: 21300000, guid: bebde52f80dae034ab46710a616b6070, type: 3}
+  up_left: {fileID: 21300000, guid: 5ddc45ca5abbdc744979b985d0fd4eea, type: 3}
+  random: {fileID: 21300000, guid: 0fb45161cbedbf6418e64a118338d907, type: 3}
 --- !u!114 &1586835734
 MonoBehaviour:
   m_ObjectHideFlags: 0
