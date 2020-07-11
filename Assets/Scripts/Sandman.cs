@@ -74,8 +74,6 @@ public class Sandman : MonoBehaviour
         }
 
 
-        globals.score.text = globals.currentDirection.ToString();//DEBUG
-
         if (globals.directionChanged)//If player has manipulated his dream
         {
             if (!isDreamingOfDirection)

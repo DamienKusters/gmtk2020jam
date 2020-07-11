@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Globals : MonoBehaviour
@@ -11,13 +12,49 @@ public class Globals : MonoBehaviour
 
     public Sprite up, up_right, right, down_right, down, down_left, left, up_left, random;
 
-    public Text time;
-    public Text score;
+    public Text timeTxt;
+    public Text scoreTxt;
 
 
     public Grid gameGrid;
 
-    
+    private int score;
+    private float timeLeft = 330.0f;
+
+    private void Awake()
+    {
+        score = 0;
+        scoreTxt.text = "0";
+
+        timeTxt.text = "3:00";
+    }
+
+    private void Update()
+    {
+        timeLeft -= Time.deltaTime;
+
+        string min = "", sec = "";
+        int curr = (int)Mathf.Round(timeLeft);
+
+        if (curr / 60 > 0)
+        {
+            curr = curr / 60;
+
+            min = curr.ToString();sec = "help, i lost my sanity";
+        }
+        else
+        {
+            min = "0";
+            sec = curr.ToString();
+        }
+
+        timeTxt.text = (min + ":" + sec).ToString();
+
+        if (timeLeft < 0)
+        {
+            SceneManager.LoadScene("menu");
+        }
+    }
 
     public Sprite GetSpriteBasedOnDirection(Direction direction)
     {
@@ -44,6 +81,13 @@ public class Globals : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    public void AddScore(int score)
+    {
+        this.score = score;
+
+        scoreTxt.text = score.ToString();
     }
 
 }

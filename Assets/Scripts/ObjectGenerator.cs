@@ -6,8 +6,8 @@ public class ObjectGenerator : MonoBehaviour
 {
     private Globals globals;
 
-    private int min_x = -8, max_x = 8;
-    private int min_y = -4, max_y = 4;
+    private int min_x = -17, max_x = 17;
+    private int min_y = -8, max_y = 8;
 
     public GameObject generatorNorth, generatorEast, generatorSouth, generatorWest;
     public GameObject HousePrefab, FlatPrefab, TombstonePrefab;
@@ -17,7 +17,7 @@ public class ObjectGenerator : MonoBehaviour
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
 
-        InvokeRepeating("GenerateObject", 3, 3);//Do this every [x] sec
+        InvokeRepeating("GenerateObject", 5, 5);//Do this every [x] sec
     }
 
     // Update is called once per frame
@@ -79,8 +79,8 @@ public class ObjectGenerator : MonoBehaviour
 
         int buildingRandomizer = Random.Range(0,100);
 
-        if(buildingRandomizer < 40)
-            Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
+        if(buildingRandomizer < 25)
+            Instantiate(FlatPrefab, newPos, new Quaternion(0, 0, 0, 0));
         else
             Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
     }
