@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class DreamCard : MonoBehaviour
 {
+    private Globals globals;
+    private Image imageTexture;
+
     public Sprite[] DreamCardSprites;
 
-    private Image imageTexture;
 
     // Start is called before the first frame update
     void Start()
     {
-        imageTexture = gameObject.GetComponent<Image>();
+        globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
 
+        imageTexture = gameObject.GetComponent<Image>();
         imageTexture.sprite = DreamCardSprites[GenerateRandomDreamCard()];
     }
 
