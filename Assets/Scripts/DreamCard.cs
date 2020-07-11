@@ -27,4 +27,9 @@ public class DreamCard : MonoBehaviour
     {
         return Random.Range(0, DreamCardSprites.Length);
     }
+
+    public void onClick()
+    {
+        Debug.Log("Clicked");
+    }
 }
