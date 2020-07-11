@@ -5,29 +5,94 @@ using UnityEngine;
 public class ObjectGenerator : MonoBehaviour
 {
     private Globals globals;
-    private Camera camera;
+
+    private int min_x = -8, max_x = 8;
+    private int min_y = -4, max_y = 4;
 
     public GameObject generatorNorth, generatorEast, generatorSouth, generatorWest;
+    public GameObject HousePrefab, FlatPrefab, TombstonePrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
-        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 
-        InvokeRepeating("GenerateObject", 2, 2);//Do this every [2] sec
+        InvokeRepeating("GenerateObject", 3, 3);//Do this every [x] sec
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        GenerateObject();
     }
 
     void GenerateObject()
     {
+        Direction dir = globals.currentDirection;
 
+        switch (dir)
+        {
+            case Direction.UP:
+                GenerateBuilding(generatorNorth, false);
+                break;
+            case Direction.UP_RIGHT:
+                GenerateBuilding(generatorEast, generatorNorth);
+                break;
+            case Direction.RIGHT:
+                GenerateBuilding(generatorEast, true);
+                break;
+            case Direction.DOWN_RIGHT:
+                GenerateBuilding(generatorEast, generatorSouth);
+                break;
+            case Direction.DOWN:
+                GenerateBuilding(generatorSouth, false);
+                break;
+            case Direction.DOWN_LEFT:
+                GenerateBuilding(generatorWest, generatorSouth);
+                break;
+            case Direction.LEFT:
+                GenerateBuilding(generatorWest, true);
+                break;
+            case Direction.UP_LEFT:
+                GenerateBuilding(generatorWest, generatorNorth);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void GenerateBuilding(GameObject spawner, bool isHorizontal)
+    {
+        int randRange;
+        Vector2 newPos;
+
+        if (isHorizontal)
+        {
+            randRange = Random.Range(min_y, max_y);
+            newPos = new Vector2(spawner.transform.position.x, spawner.transform.position.y + randRange);
+        }
+        else
+        {
+            randRange = Random.Range(min_x, max_x);
+            newPos = new Vector2(spawner.transform.position.x + randRange, spawner.transform.position.y);
+        }
+
+        int buildingRandomizer = Random.Range(0,100);
+
+        if(buildingRandomizer < 40)
+            Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
+        else
+            Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
+    }
+
+    void GenerateBuilding(GameObject spawner1, GameObject spawner2)
+    {
+        int rand = Random.Range(0, 2);
+
+        if (rand == 0)
+            GenerateBuilding(spawner1, true);//SPAWNER 1 SHOULD ALWAYS EITHER BE WEST OR EAST
+        else
+            GenerateBuilding(spawner2, true);//SPAWNER 2 SHOULD ALWAYS EITHER BE SOUTH OR NORTH
 
     }
 }
