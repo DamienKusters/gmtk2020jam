@@ -32,6 +32,10 @@ public class DreamCard : MonoBehaviour
     {
         globals.newDirection = direction;
         globals.directionChanged = true;
+
+        //Todo: Play deflate sound.
+
+        Destroy(gameObject);
     }
 
     
