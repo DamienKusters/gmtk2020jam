@@ -35,7 +35,7 @@ public class Sandman : MonoBehaviour
         if (globals.currentDirection == Direction.UP)
         {
             //Set new Coordinate and Update
-            transform.position += Vector3.up * sandmanSpeed * Time.deltaTime;
+            HandleMovementForSandman(globals.currentDirection);
 
             //Ensure correct animation plays
             animator.SetBool("IsForward", false);
@@ -45,7 +45,7 @@ public class Sandman : MonoBehaviour
         else if(globals.currentDirection == Direction.RIGHT || globals.currentDirection == Direction.UP_RIGHT || globals.currentDirection == Direction.DOWN_RIGHT)
         {
             //Set new Coordinate and Update
-            transform.position += Vector3.right * sandmanSpeed * Time.deltaTime;
+            HandleMovementForSandman(globals.currentDirection);
 
             //Ensure correct animation plays
             animator.SetBool("IsForward", false);
@@ -55,7 +55,7 @@ public class Sandman : MonoBehaviour
         else if (globals.currentDirection == Direction.LEFT || globals.currentDirection == Direction.UP_LEFT || globals.currentDirection == Direction.DOWN_LEFT)
         {
             //Set new Coordinate and Update
-            transform.position += Vector3.left * sandmanSpeed * Time.deltaTime;
+            HandleMovementForSandman(globals.currentDirection);
 
             //Ensure correct animation plays
             animator.SetBool("IsForward", false);
@@ -65,7 +65,7 @@ public class Sandman : MonoBehaviour
         else
         {
             //Set new Coordinate and Update
-            transform.position += Vector3.down * sandmanSpeed * Time.deltaTime;
+            HandleMovementForSandman(globals.currentDirection);
 
             //Ensure correct animation plays
             animator.SetBool("IsForward", true);
@@ -122,5 +122,44 @@ public class Sandman : MonoBehaviour
         isDreamingOfDirection = false;
 
         dreamingStem.SetActive(false);
+    }
+
+    void HandleMovementForSandman(Direction currentDirection)
+    {
+        switch (currentDirection)
+        {
+            case Direction.UP:
+                transform.position += Vector3.up * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.UP_RIGHT:
+                transform.position += Vector3.up * sandmanSpeed * Time.deltaTime;
+                transform.position += Vector3.right * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.RIGHT:
+                transform.position += Vector3.right * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.DOWN_RIGHT:
+                transform.position += Vector3.right * sandmanSpeed * Time.deltaTime;
+                transform.position += Vector3.down * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.DOWN:
+                transform.position += Vector3.down * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.DOWN_LEFT:
+                transform.position += Vector3.down * sandmanSpeed * Time.deltaTime;
+                transform.position += Vector3.left * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.LEFT:
+                transform.position += Vector3.left * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.UP_LEFT:
+                transform.position += Vector3.left * sandmanSpeed * Time.deltaTime;
+                transform.position += Vector3.up * sandmanSpeed * Time.deltaTime;
+                break;
+            case Direction.RANDOM:
+                break;
+            default:
+                break;
+        }
     }
 }
