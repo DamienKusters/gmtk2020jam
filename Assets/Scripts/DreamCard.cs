@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class DreamCard : MonoBehaviour
 {
-    public Sprite up_left, up, up_right, right, down_right, down, down_left, left, shuffle;
+    public Sprite[] DreamCardSprites;
+
+    private Image imageTexture;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        imageTexture = gameObject.GetComponent<Image>();
+
+        imageTexture.sprite = DreamCardSprites[GenerateRandomDreamCard()];
     }
 
     // Update is called once per frame
@@ -19,5 +23,8 @@ public class DreamCard : MonoBehaviour
         
     }
 
-
+    int GenerateRandomDreamCard()
+    {
+        return Random.Range(0, DreamCardSprites.Length);
+    }
 }
