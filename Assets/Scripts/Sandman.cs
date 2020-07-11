@@ -8,10 +8,17 @@ public class Sandman : MonoBehaviour
     private bool isDreamingOfDirection = false;
     private Direction dreamingDirection;
 
+    private GameObject dreamingStem;
+    private SpriteRenderer currentDream;
+
     // Start is called before the first frame update
     void Start()
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
+
+        dreamingStem = transform.GetChild(0).gameObject;
+        currentDream = dreamingStem.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        dreamingStem.SetActive(false);
 
         InvokeRepeating("DetermineNextLocation", 5, 5);//Do this every [5] sec
     }
@@ -19,11 +26,9 @@ public class Sandman : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Moving animation to correct side
+        //TODO: Moving animation to correct side
 
         globals.score.text = globals.currentDirection.ToString();//DEBUG
-
-        //TODO: Change texture if user changes it
 
         if (globals.directionChanged)//If player has manipulated his dream
         {
@@ -37,6 +42,7 @@ public class Sandman : MonoBehaviour
                 dreamingDirection = globals.newDirection;
 
             Debug.Log("......Sandman's dream is changed: " + dreamingDirection);
+            currentDream.sprite = globals.GetSpriteBasedOnDirection(dreamingDirection);
 
             globals.directionChanged = false;//Reset the flag
         }
@@ -50,9 +56,11 @@ public class Sandman : MonoBehaviour
 
         isDreamingOfDirection = true;
 
+        dreamingStem.SetActive(true);
+
         dreamingDirection = (Direction)Random.Range(0, 8);
 
-        //TODO: SET TEXTURE OF DREAMING DIRECTION
+        currentDream.sprite = globals.GetSpriteBasedOnDirection(dreamingDirection);
 
         Debug.Log("......Sandman is dreaming of: " + dreamingDirection);
 
@@ -66,5 +74,7 @@ public class Sandman : MonoBehaviour
         globals.currentDirection = dreamingDirection;//Change direction
 
         isDreamingOfDirection = false;
+
+        dreamingStem.SetActive(false);
     }
 }
