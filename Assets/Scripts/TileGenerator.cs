@@ -23,7 +23,7 @@ public class TileGenerator : MonoBehaviour
     {
         //[1] Check if New Tile needs to be Rendered [2] Determine where tile needs to be [3] Create and Place Tile
         //if Viewport X + Viewport Width >= Tile Width { Create New Tile}
-        Debug.Log("Camera X Coordinate Equals: " + camera.rect.width);
+        //Debug.Log("Camera X Coordinate Equals: " + camera.rect.width);
 
     }
 }
