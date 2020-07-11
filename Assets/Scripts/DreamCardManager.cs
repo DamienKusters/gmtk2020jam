@@ -18,12 +18,6 @@ public class DreamCardManager : MonoBehaviour
         InvokeRepeating("AddDreamCard", 0, 20);//Do this every [15] sec
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AddDreamCard()
     {
         if(slot_1.transform.childCount <= 0)

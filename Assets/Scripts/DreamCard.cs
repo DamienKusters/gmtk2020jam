@@ -16,6 +16,8 @@ public class DreamCard : MonoBehaviour
 
         image = gameObject.GetComponent<Image>();
 
+        //TODO play spawn sound | pop or inflate
+
         GenerateRandomDreamCard();
     }
 
@@ -37,6 +39,4 @@ public class DreamCard : MonoBehaviour
 
         Destroy(gameObject);
     }
-
-    
 }
