@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Globals : MonoBehaviour
 {
     public bool directionChanged = false;//The sandman script will get this value: true = grab the direction specified in globals, false = generate random
-    public Direction direction = Direction.RIGHT;
+    public Direction newDirection = Direction.RIGHT;
+    public Direction currentDirection = Direction.RIGHT;
 
     public Text time;
     public Text score;

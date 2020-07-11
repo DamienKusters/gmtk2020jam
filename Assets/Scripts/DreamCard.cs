@@ -62,7 +62,7 @@ public class DreamCard : MonoBehaviour
 
     public void onClick()
     {
-        globals.direction = direction;
+        globals.newDirection = direction;
         globals.directionChanged = true;
     }
 
