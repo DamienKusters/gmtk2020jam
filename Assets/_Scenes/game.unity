@@ -454,6 +454,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObject: {fileID: 1022884839}
+  baseTile: {fileID: 11400000, guid: cafdbea9e16fb46478d6d00bac1b0b84, type: 2}
+  tilemap: {fileID: 2086856979}
 --- !u!4 &487207104
 Transform:
   m_ObjectHideFlags: 0
@@ -1116,6 +1118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 906620320}
   sandmanSpeed: 2
+  tileGenerator: {fileID: 487207103}
 --- !u!95 &906620320
 Animator:
   serializedVersion: 3
@@ -1193,7 +1196,6 @@ MonoBehaviour:
   time: {fileID: 701517274}
   score: {fileID: 741284256}
   gameGrid: {fileID: 1529041958}
-  gameTiles: []
 --- !u!1 &958614034
 GameObject:
   m_ObjectHideFlags: 0
@@ -1342,7 +1344,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 0.9607844, b: 0.70980394, a: 0}
+  m_BackGroundColor: {r: 1, g: 0.9572922, b: 0.6839622, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1385,7 +1387,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -50}
   m_LocalScale: {x: 5, y: 5, z: 5}
-  m_Children: []
+  m_Children:
+  - {fileID: 1690612768}
   m_Father: {fileID: 906620318}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2273,7 +2276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2086856976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.031, y: 0, z: 0}
+  m_LocalPosition: {x: -0.32, y: 0.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1529041959}

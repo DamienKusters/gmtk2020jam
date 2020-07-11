@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class TileGenerator : MonoBehaviour
@@ -10,8 +11,11 @@ public class TileGenerator : MonoBehaviour
     public GameObject cameraObject;
     private Camera camera;
 
-    public 
+    public Tile baseTile;
+    public Tilemap tilemap;
 
+    int baseX = 0;
+    int baseY = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,16 +23,76 @@ public class TileGenerator : MonoBehaviour
         global = GameObject.Find("GLOBALS").GetComponent<Globals>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CreateTileInRequiredDirections()
     {
-        //[1] Check if New Tile needs to be Rendered [2] Determine where tile needs to be [3] Create and Place Tile
-        //if Viewport X + Viewport Width >= Tile Width { Create New Tile}
-        //Debug.Log("Camera X Coordinate Equals: " + camera.rect.width);
-        if(global.currentDirection == Direction.RIGHT)
+        switch (global.currentDirection)
         {
-
+            case Direction.UP:
+                baseY += 10;
+                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                break;
+            case Direction.UP_RIGHT:
+                for(int i = 0; i < 3; i++)
+                {
+                    for(int x = 0; x < 3; x++)
+                    {
+                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                        baseX += 19;
+                    }
+                    baseX -= 57;
+                    baseY += 10;
+                }
+                break;
+            case Direction.RIGHT:
+                baseX += 19;
+                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                break;
+            case Direction.DOWN_RIGHT:
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                        baseX += 19;
+                    }
+                    baseX -= 57;
+                    baseY -= 10;
+                }
+                break;
+            case Direction.DOWN:
+                baseY -= 10;
+                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                break;
+            case Direction.DOWN_LEFT:
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                        baseX -= 19;
+                    }
+                    baseX += 57;
+                    baseY -= 10;
+                }
+                break;
+            case Direction.LEFT:
+                baseX -= 19;
+                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                break;
+            case Direction.UP_LEFT:
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                        baseX += 19;
+                    }
+                    baseX += 57;
+                    baseY += 10;
+                }
+                break;
+            default:
+                break;
         }
-
     }
 }

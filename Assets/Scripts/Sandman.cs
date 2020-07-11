@@ -14,6 +14,7 @@ public class Sandman : MonoBehaviour
     public Animator animator;
 
     public float sandmanSpeed = 1.0f;
+    public TileGenerator tileGenerator;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class Sandman : MonoBehaviour
         dreamingStem.SetActive(false);
 
         InvokeRepeating("DetermineNextLocation", 5, 5);//Do this every [5] sec
+        tileGenerator.CreateTileInRequiredDirections();
     }
 
     // Update is called once per frame
@@ -118,6 +120,7 @@ public class Sandman : MonoBehaviour
         yield return new WaitForSeconds(Random.Range(4, 8));//TODO: Edit randoms
 
         globals.currentDirection = dreamingDirection;//Change direction
+        tileGenerator.CreateTileInRequiredDirections();
 
         isDreamingOfDirection = false;
 
