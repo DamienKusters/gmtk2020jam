@@ -14,7 +14,8 @@ public class DreamCardManager : MonoBehaviour
     void Start()
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
-        AddDreamCard();//Debug?
+
+        InvokeRepeating("AddDreamCard", 0, 15);//Do this every [15] sec
     }
 
     // Update is called once per frame
