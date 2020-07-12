@@ -17,7 +17,8 @@ public class ObjectGenerator : MonoBehaviour
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
 
-        InvokeRepeating("GenerateObject", 5, 5);//Do this every [x] sec
+        InvokeRepeating("GenerateBuilding", 5, 5);//Do this every [x] sec
+        InvokeRepeating("GenerateGravestone", 1, 1);
     }
 
     // Update is called once per frame
@@ -26,42 +27,59 @@ public class ObjectGenerator : MonoBehaviour
 
     }
 
-    void GenerateObject()
+    void GenerateBuilding()
+    {
+        GenerateObject(true);
+    }
+
+    void GenerateGravestone()
+    {
+        
+        if (globals.Score < 599)
+            return;
+
+        int rand = Random.Range(0, 9000);
+
+        if (rand < globals.Score)//Gravestone
+            GenerateObject(false);
+    }
+
+    void GenerateObject(bool isBuilding)
     {
         Direction dir = globals.currentDirection;
 
         switch (dir)
         {
             case Direction.UP:
-                GenerateBuilding(generatorNorth, false);
+                GenerateBuilding(isBuilding, generatorNorth, false);
                 break;
             case Direction.UP_RIGHT:
-                GenerateBuilding(generatorEast, generatorNorth);
+                GenerateBuilding(isBuilding, generatorEast, generatorNorth);
                 break;
             case Direction.RIGHT:
-                GenerateBuilding(generatorEast, true);
+                GenerateBuilding(isBuilding, generatorEast, true);
                 break;
             case Direction.DOWN_RIGHT:
-                GenerateBuilding(generatorEast, generatorSouth);
+                GenerateBuilding(isBuilding, generatorEast, generatorSouth);
                 break;
             case Direction.DOWN:
-                GenerateBuilding(generatorSouth, false);
+                GenerateBuilding(isBuilding, generatorSouth, false);
                 break;
             case Direction.DOWN_LEFT:
-                GenerateBuilding(generatorWest, generatorSouth);
+                GenerateBuilding(isBuilding, generatorWest, generatorSouth);
                 break;
             case Direction.LEFT:
-                GenerateBuilding(generatorWest, true);
+                GenerateBuilding(isBuilding, generatorWest, true);
                 break;
             case Direction.UP_LEFT:
-                GenerateBuilding(generatorWest, generatorNorth);
+                GenerateBuilding(isBuilding, generatorWest, generatorNorth);
                 break;
             default:
                 break;
         }
     }
 
-    void GenerateBuilding(GameObject spawner, bool isHorizontal)
+    void GenerateBuilding(bool isBuilding, GameObject spawner, bool isHorizontal)
     {
         int randRange;
         Vector2 newPos;
@@ -77,24 +95,28 @@ public class ObjectGenerator : MonoBehaviour
             newPos = new Vector2(spawner.transform.position.x + randRange, spawner.transform.position.y);
         }
 
+        if(!isBuilding)
+        {
+            Instantiate(TombstonePrefab, newPos, new Quaternion(0, 0, 0, 0));
+            return;
+        }
+
         int buildingRandomizer = Random.Range(0,100);
 
         if(buildingRandomizer < 25)
             Instantiate(FlatPrefab, newPos, new Quaternion(0, 0, 0, 0));
-        else if(globals.Score > 1000 && buildingRandomizer > 70)//Gravestone
-            Instantiate(TombstonePrefab, newPos, new Quaternion(0, 0, 0, 0));
         else
             Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
     }
 
-    void GenerateBuilding(GameObject spawner1, GameObject spawner2)
+    void GenerateBuilding(bool isBuilding, GameObject spawner1, GameObject spawner2)
     {
         int rand = Random.Range(0, 2);
 
         if (rand == 0)
-            GenerateBuilding(spawner1, true);//SPAWNER 1 SHOULD ALWAYS EITHER BE WEST OR EAST
+            GenerateBuilding(isBuilding, spawner1, true);//SPAWNER 1 SHOULD ALWAYS EITHER BE WEST OR EAST
         else
-            GenerateBuilding(spawner2, true);//SPAWNER 2 SHOULD ALWAYS EITHER BE SOUTH OR NORTH
+            GenerateBuilding(isBuilding, spawner2, true);//SPAWNER 2 SHOULD ALWAYS EITHER BE SOUTH OR NORTH
 
     }
 }
