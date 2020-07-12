@@ -1,5 +1,6 @@
 # GMTK 2020 Game Jam : Dream Stroller Concept
 **Concept**
+
 The Sandman needs to make as many households fall asleep! Each sleeping household grants points to the score counter, and you’ll receive a ‘Dream’
 
 Focus lies on replay-ability, it must be an **ARCADE** game. (aka, a game with point, you want to beat your high-score and stuff)
