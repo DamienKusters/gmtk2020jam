@@ -18,11 +18,14 @@ public class Globals : MonoBehaviour
     public AudioSource audioPlayer;
 
     public DreamCardManager dcm;
+    public HeartManager heartManager;
 
     public Grid gameGrid;
 
     private int score = 0;
     private float timeLeft = 330.0f;
+
+    public int Score { get { return score; } }
 
     private void Awake()
     {
@@ -90,6 +93,11 @@ public class Globals : MonoBehaviour
     {
         this.score += score;
         scoreTxt.text = this.score.ToString();
+    }
+
+    public void HurtSandman()
+    {
+        heartManager.InjureSandman();
     }
 
     public void PlaySound(AudioClip audio)
