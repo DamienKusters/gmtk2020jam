@@ -9,6 +9,7 @@ public class DreamCard : MonoBehaviour
     private Image image;
     private Direction direction;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class DreamCard : MonoBehaviour
         globals.directionChanged = true;
 
         //Todo: Play deflate sound.
+        globals.cardDespawnSound.Play();
 
         Destroy(gameObject);
     }

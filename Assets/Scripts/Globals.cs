@@ -16,6 +16,7 @@ public class Globals : MonoBehaviour
     public Text scoreTxt;
 
     public DreamCardManager dcm;
+    public AudioSource cardDespawnSound;
 
     public Grid gameGrid;
 
@@ -41,7 +42,7 @@ public class Globals : MonoBehaviour
         {
             curr = curr / 60;
 
-            min = curr.ToString();sec = "help, i lost my sanity";
+            min = curr.ToString();sec = "?";
         }
         else
         {
