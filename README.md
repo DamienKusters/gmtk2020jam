@@ -5,7 +5,9 @@ The Sandman needs to make as many households fall asleep! Each sleeping househol
 Focus lies on replay-ability, it must be an **ARCADE** game. (aka, a game with point, you want to beat your high-score and stuff)
 
 **Gameplay**
+
 **Objective:** Your goal is to influence the sandman’s movement/actions in order to make as many households in the area sleep.
+
 **Obstacle:** There will be ‘nightmares’ you have to evade.
 
 During gameplay, the sandman will randomly dream about actions it wants to perform. These actions are random, and will be telegraphed by a ‘thinking cloud’ with an appropriate direction ‘indicating’ the action it wants to perform.
