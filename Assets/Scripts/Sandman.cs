@@ -15,6 +15,7 @@ public class Sandman : MonoBehaviour
 
     public float sandmanSpeed = 1.0f;
     public TileGenerator tileGenerator;
+    public AudioClip sandmanThinking;
 
     // Start is called before the first frame update
     void Start()
@@ -103,6 +104,7 @@ public class Sandman : MonoBehaviour
         isDreamingOfDirection = true;
 
         dreamingStem.SetActive(true);
+        globals.PlaySound(sandmanThinking);
 
         dreamingDirection = (Direction)Random.Range(0, 8);
 

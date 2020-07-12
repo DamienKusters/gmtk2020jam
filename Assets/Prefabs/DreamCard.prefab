@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ad4b5d217e6fb4a84330461d108f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  despawnClip: {fileID: 8300000, guid: 2e7e70e176482fb409de0519058c94b5, type: 3}
+  spawnClip: {fileID: 8300000, guid: 09fa680cd216e6e45afb0fc763d346ca, type: 3}
 --- !u!114 &6535930922076236413
 MonoBehaviour:
   m_ObjectHideFlags: 0

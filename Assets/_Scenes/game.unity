@@ -1202,6 +1202,7 @@ MonoBehaviour:
   animator: {fileID: 906620320}
   sandmanSpeed: 2
   tileGenerator: {fileID: 487207103}
+  sandmanThinking: {fileID: 8300000, guid: fb8d37d0c59783f46be07cd0a3906ac7, type: 3}
 --- !u!95 &906620320
 Animator:
   serializedVersion: 3
@@ -1316,8 +1317,8 @@ MonoBehaviour:
   random: {fileID: 21300000, guid: 0fb45161cbedbf6418e64a118338d907, type: 3}
   timeTxt: {fileID: 701517274}
   scoreTxt: {fileID: 741284256}
+  audioPlayer: {fileID: 930460913}
   dcm: {fileID: 2051203073}
-  cardDespawnSound: {fileID: 0}
   gameGrid: {fileID: 1529041958}
 --- !u!82 &930460913
 AudioSource:
@@ -1624,7 +1625,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c8c9413915a40cf4582f39badc71173e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -9,7 +9,7 @@ public class DreamCard : MonoBehaviour
     private Image image;
     private Direction direction;
 
-    public AudioClip despawnClip;
+    public AudioClip spawnClip;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class DreamCard : MonoBehaviour
 
         image = gameObject.GetComponent<Image>();
 
-        //TODO play spawn sound | pop or inflate
+        globals.PlaySound(spawnClip);
 
         GenerateRandomDreamCard();
     }
@@ -36,8 +36,6 @@ public class DreamCard : MonoBehaviour
     {
         globals.newDirection = direction;
         globals.directionChanged = true;
-
-        globals.PlaySound(despawnClip);
 
         Destroy(gameObject);
     }
