@@ -61,7 +61,9 @@ public class Globals : MonoBehaviour
         }
         if (timeRemaining <= 0)
         {
-            PlayerPrefs.SetInt("Highscore", score);
+            if(PlayerPrefs.GetInt("Highscore") < score)
+                PlayerPrefs.SetInt("Highscore", score);
+
             finalScore.text = "Total Points: " + score;
             Time.timeScale = 0;
             endNotif.SetActive(true);

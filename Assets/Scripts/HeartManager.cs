@@ -23,7 +23,9 @@ public class HeartManager : MonoBehaviour
         {
             heart_1.SetActive(false);
 
-            PlayerPrefs.SetInt("Highscore", globals.Score);
+            if (PlayerPrefs.GetInt("Highscore") < globals.Score)
+                PlayerPrefs.SetInt("Highscore", globals.Score);
+
             globals.finalScore.text = "Total Points: " + globals.Score;
             Time.timeScale = 0;
             globals.endNotif.SetActive(true);
