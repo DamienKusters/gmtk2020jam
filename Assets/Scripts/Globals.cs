@@ -15,10 +15,11 @@ public class Globals : MonoBehaviour
     public Text timeTxt;
     public Text scoreTxt;
 
+    public DreamCardManager dcm;
 
     public Grid gameGrid;
 
-    private int score;
+    private int score = 0;
     private float timeLeft = 330.0f;
 
     private void Awake()
@@ -85,9 +86,8 @@ public class Globals : MonoBehaviour
 
     public void AddScore(int score)
     {
-        this.score = score;
-
-        scoreTxt.text = score.ToString();
+        this.score += score;
+        scoreTxt.text = this.score.ToString();
     }
 
 }

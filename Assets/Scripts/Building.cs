@@ -8,12 +8,13 @@ public class Building : MonoBehaviour
     private Globals globals;
 
     public int value;
-    public DreamCardManager dcm;
 
     // Start is called before the first frame update
     void Start()
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
+
+        Invoke("Despawn", 20);
     }
 
     // Update is called once per frame
@@ -28,15 +29,14 @@ public class Building : MonoBehaviour
             return;
 
         globals.AddScore(value);//Add score
-        dcm.AddDreamCard();
+        globals.dcm.AddDreamCard();
 
         //Despawn animation
-
-        Destroy(gameObject);
+        Despawn();
     }
 
-    void AnimateDespawn()
+    void Despawn()
     {
-
+        Destroy(gameObject);
     }
 }
