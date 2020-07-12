@@ -56,6 +56,7 @@ public class Globals : MonoBehaviour
         }
         if (timeRemaining <= 0)
         {
+            PlayerPrefs.SetInt("Highscore", score);
             SceneManager.LoadScene("menu");
         }
     }
