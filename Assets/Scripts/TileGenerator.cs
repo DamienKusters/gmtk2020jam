@@ -15,8 +15,14 @@ public class TileGenerator : MonoBehaviour
     public Tile baseTile;
     public Tilemap tilemap;
 
+    public int straightTileSize = 3;
+    public int diagonalTileSize = 4;
+
     int baseX = 0;
     int baseY = 0;
+
+    private int xStep = 19;
+    private int yStep = 10;
     
     //called before the first frame update
     void Start()
@@ -40,85 +46,81 @@ public class TileGenerator : MonoBehaviour
         switch (global.currentDirection)
         {
             case Direction.UP:
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseY += 10;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseY += 10;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                for(int z = 0; z < straightTileSize; z++)
+                {
+                    tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX-19, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX+19, baseY, 0), baseTile);
+
+                    if (z < 2)
+                        baseY += 10;
+                }
                 break;
             case Direction.UP_RIGHT:
-                for(int i = 0; i < 4; i++)
-                {
-                    for(int x = 0; x < 4; x++)
-                    {
-                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                        baseX += 19;
-                    }
-                    baseX -= 76;
-                    baseY += 10;
-                }
+                DrawDiagonalSquareOfTiles(xStep, yStep);
                 break;
             case Direction.RIGHT:
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseX += 19;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseX += 19;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                for (int z = 0; z < straightTileSize; z++)
+                {
+                    tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX, baseY + 10, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX, baseY - 10, 0), baseTile);
+
+                    if (z < 2)
+                        baseX += 19;
+                }
                 break;
             case Direction.DOWN_RIGHT:
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int x = 0; x < 4; x++)
-                    {
-                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                        baseX += 19;
-                    }
-                    baseX -= 76;
-                    baseY -= 10;
-                }
+                DrawDiagonalSquareOfTiles(xStep, -yStep);
                 break;
             case Direction.DOWN:
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseY -= 10;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseY -= 10;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                for (int z = 0; z < straightTileSize; z++)
+                {
+                    tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX - 19, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX + 19, baseY, 0), baseTile);
+
+                    if (z < 2)
+                        baseY -= 10;
+                }
                 break;
             case Direction.DOWN_LEFT:
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int x = 0; x < 4; x++)
-                    {
-                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                        baseX -= 19;
-                    }
-                    baseX += 76;
-                    baseY -= 10;
-                }
+                DrawDiagonalSquareOfTiles(-xStep, -yStep);
                 break;
             case Direction.LEFT:
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseX -= 19;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                baseX -= 19;
-                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                for (int z = 0; z < straightTileSize; z++)
+                {
+                    tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX, baseY + 10, 0), baseTile);
+                    tilemap.SetTile(new Vector3Int(baseX, baseY - 10, 0), baseTile);
+
+                    if (z < 2)
+                        baseX -= 19;
+                }
                 break;
             case Direction.UP_LEFT:
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int x = 0; x < 4; x++)
-                    {
-                        tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
-                        baseX -= 19;
-                    }
-                    baseX += 76;
-                    baseY += 10;
-                }
+                DrawDiagonalSquareOfTiles(-xStep, yStep);
                 break;
             default:
                 break;
         }
     }
+
+    private void DrawDiagonalSquareOfTiles(int xOffset, int yOffset)
+    {
+        for (int i = 0; i < diagonalTileSize; i++)
+        {
+            for (int x = 0; x < diagonalTileSize; x++)
+            {
+                tilemap.SetTile(new Vector3Int(baseX, baseY, 0), baseTile);
+                baseX += xOffset;
+            }
+            baseX += -xOffset * diagonalTileSize;
+            baseY += yOffset;
+
+        }
+    }
+
 
     private int FindClosestNumber(int n, int m)
     {
