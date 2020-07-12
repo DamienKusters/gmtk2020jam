@@ -39,6 +39,8 @@ public class Globals : MonoBehaviour
 
         timeTxt.text = "3:00";
         timerIsRunning = true;
+
+        Time.timeScale = 1;
     }
 
     private void Update()
@@ -50,7 +52,6 @@ public class Globals : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
-                endNotif.SetActive(true);
             }
             else
             {
@@ -62,6 +63,7 @@ public class Globals : MonoBehaviour
         {
             PlayerPrefs.SetInt("Highscore", score);
             finalScore.text = "Total Points: " + score;
+            Time.timeScale = 0;
             endNotif.SetActive(true);
         }
     }

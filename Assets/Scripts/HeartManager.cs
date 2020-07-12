@@ -6,6 +6,12 @@ using UnityEngine.SceneManagement;
 public class HeartManager : MonoBehaviour
 {
     public GameObject heart_1, heart_2, heart_3;
+    private Globals globals;
+
+    void Start()
+    {
+        globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
+    }
 
     public void InjureSandman()
     {
@@ -17,8 +23,9 @@ public class HeartManager : MonoBehaviour
         {
             heart_1.SetActive(false);
 
-
-            SceneManager.LoadScene("menu");
+            globals.finalScore.text = "Total Points: " + globals.Score;
+            Time.timeScale = 0;
+            globals.endNotif.SetActive(true);
         }
     }
 }

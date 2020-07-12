@@ -27,6 +27,7 @@ public class TileGenerator : MonoBehaviour
     //called before the first frame update
     void Start()
     {
+        tilemap.ClearAllTiles();
         camera = cameraObject.GetComponent<Camera>();
         global = GameObject.Find("GLOBALS").GetComponent<Globals>();
     }
