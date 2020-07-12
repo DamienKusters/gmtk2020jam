@@ -23,7 +23,9 @@ public class Globals : MonoBehaviour
     public Grid gameGrid;
 
     private int score = 0;
-    private float timeLeft = 330.0f;
+
+    public float timeRemaining = 180;
+    public bool timerIsRunning = false;
 
     public int Score { get { return score; } }
 
@@ -33,33 +35,39 @@ public class Globals : MonoBehaviour
         scoreTxt.text = "0";
 
         timeTxt.text = "3:00";
+        timerIsRunning = true;
     }
 
     private void Update()
     {
-        timeLeft -= Time.deltaTime;
 
-        string min = "", sec = "";
-        int curr = (int)Mathf.Round(timeLeft);
-
-        if (curr / 60 > 0)
+        if (timerIsRunning)
         {
-            curr = curr / 60;
-
-            min = curr.ToString();sec = "?";
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                DisplayTime(timeRemaining);
+            }
+            else
+            {
+                timeRemaining = 0;
+                timerIsRunning = false;
+            }
         }
-        else
+        if (timeRemaining <= 0)
         {
-            min = "0";
-            sec = curr.ToString();
-        }
-
-        timeTxt.text = (min + ":" + sec).ToString();
-
-        if (timeLeft < 0)
-        {
+            PlayerPrefs.SetInt("Highscore", score);
             SceneManager.LoadScene("menu");
         }
+    }
+    void DisplayTime(float timeToDisplay)
+    {
+        timeToDisplay += 1;
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timeTxt.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public Sprite GetSpriteBasedOnDirection(Direction direction)
