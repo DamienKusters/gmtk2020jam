@@ -81,6 +81,8 @@ public class ObjectGenerator : MonoBehaviour
 
         if(buildingRandomizer < 25)
             Instantiate(FlatPrefab, newPos, new Quaternion(0, 0, 0, 0));
+        else if(globals.Score > 1000 && buildingRandomizer > 70)//Gravestone
+            Instantiate(TombstonePrefab, newPos, new Quaternion(0, 0, 0, 0));
         else
             Instantiate(HousePrefab, newPos, new Quaternion(0, 0, 0, 0));
     }
