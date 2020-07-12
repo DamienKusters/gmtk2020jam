@@ -15,8 +15,9 @@ public class Globals : MonoBehaviour
     public Text timeTxt;
     public Text scoreTxt;
 
+    public AudioSource audioPlayer;
+
     public DreamCardManager dcm;
-    public AudioSource cardDespawnSound;
 
     public Grid gameGrid;
 
@@ -89,6 +90,12 @@ public class Globals : MonoBehaviour
     {
         this.score += score;
         scoreTxt.text = this.score.ToString();
+    }
+
+    public void PlaySound(AudioClip audio)
+    {
+        audioPlayer.clip = audio;
+        audioPlayer.Play();
     }
 
 }
