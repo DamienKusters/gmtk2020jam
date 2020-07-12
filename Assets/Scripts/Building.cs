@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
     {
         globals = GameObject.Find("GLOBALS").GetComponent<Globals>();
 
-        Invoke("Despawn", 20);
+        Invoke("Despawn", 30);
     }
 
     // Update is called once per frame

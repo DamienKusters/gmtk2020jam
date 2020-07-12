@@ -38,7 +38,7 @@ public class ObjectGenerator : MonoBehaviour
         if (globals.Score < 599)
             return;
 
-        int rand = Random.Range(0, 9000);
+        int rand = Random.Range(599, 4000);
 
         if (rand < globals.Score)//Gravestone
             GenerateObject(false);
