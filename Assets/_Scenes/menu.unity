@@ -1140,7 +1140,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Previous Highscore: 500'
+  m_Text: 'Previous Highscore: 0'
 --- !u!222 &1793542032
 CanvasRenderer:
   m_ObjectHideFlags: 0
