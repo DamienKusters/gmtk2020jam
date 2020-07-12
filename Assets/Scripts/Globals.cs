@@ -27,6 +27,9 @@ public class Globals : MonoBehaviour
     public float timeRemaining = 180;
     public bool timerIsRunning = false;
 
+    public GameObject endNotif;
+    public Text finalScore;
+
     public int Score { get { return score; } }
 
     private void Awake()
@@ -47,6 +50,7 @@ public class Globals : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
+                endNotif.SetActive(true);
             }
             else
             {
@@ -57,7 +61,8 @@ public class Globals : MonoBehaviour
         if (timeRemaining <= 0)
         {
             PlayerPrefs.SetInt("Highscore", score);
-            SceneManager.LoadScene("menu");
+            finalScore.text = "Total Points: " + score;
+            endNotif.SetActive(true);
         }
     }
     void DisplayTime(float timeToDisplay)
