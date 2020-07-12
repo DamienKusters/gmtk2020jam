@@ -456,6 +456,8 @@ MonoBehaviour:
   cameraObject: {fileID: 1022884839}
   baseTile: {fileID: 11400000, guid: cafdbea9e16fb46478d6d00bac1b0b84, type: 2}
   tilemap: {fileID: 2086856979}
+  straightTileSize: 3
+  diagonalTileSize: 4
 --- !u!4 &487207104
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,6 +1242,8 @@ MonoBehaviour:
   dcm: {fileID: 2051203073}
   heartManager: {fileID: 231430082}
   gameGrid: {fileID: 1529041958}
+  timeRemaining: 180
+  timerIsRunning: 0
 --- !u!82 &930460913
 AudioSource:
   m_ObjectHideFlags: 0
