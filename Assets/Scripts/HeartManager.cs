@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeartManager : MonoBehaviour
 {
@@ -23,8 +24,9 @@ public class HeartManager : MonoBehaviour
         else if (heart_1.activeSelf)
         {
             heart_1.SetActive(false);
-            //TODO: GAME OVER
-            Debug.Log("TODO: RIP sandman");
+
+
+            SceneManager.LoadScene("menu");
         }
     }
 }
